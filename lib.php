@@ -1,5 +1,8 @@
 <?php
 
+require_once(__DIR__ . '/available_teachers.php');
+
+
 class enrol_weeklyhours_plugin extends enrol_plugin {
 
     /**
@@ -8,7 +11,36 @@ class enrol_weeklyhours_plugin extends enrol_plugin {
      * @return string HTML displayed on course page
      */
     public function enrol_page_hook(stdClass $course) {
-        return '<h3>Weekly hours enrol page hook</h3>';
+        // TODO get this data from the database
+        $teachers = array(
+            array(
+                'id' => 1,
+                'name' => 'Teacher 1',
+                'percent_positive_reviews' => 90,
+                'review_count' => 9,
+                'days_available' => array('Tues', 'Thurs'),
+
+                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php', array('teacher' => 1)),
+                'reviews_url' => new moodle_url('/enrol/weeklyhours/view_teacher_reviews.php', array('teacher' => 1)),
+            ),
+            array(
+                'id' => 2,
+                'name' => 'Teacher 2',
+                'percent_positive_reviews' => 70,
+                'review_count' => 3,
+                'days_available' => array('Mon', 'Tues', 'Wedn', 'Thurs'),
+
+                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php', array('teacher' => 1)),
+                'reviews_url' => new moodle_url('/enrol/weeklyhours/view_teacher_reviews.php', array('teacher' => 1)),
+            )
+        );
+
+        // Start reading output into an output buffer
+        ob_start();
+
+        available_teachers_template($teachers);
+
+        return ob_get_clean();
     }
 
     /**
