@@ -2,12 +2,13 @@
 
 require('../../config.php');
 
-global $DB;
-$course = $DB->get_record('course', array('id' => 2), '*', MUST_EXIST);
-
-$plugin = enrol_get_plugin('weekly_hours');
+$courseid = 2;
 $fields = array(
-    'hours_required' => 100
+    'required_hours' => 200,
+    'enrolstartdate' => 0,
+    'enrolenddate' => 0,
 );
 
-echo $plugin->add_instance($course, $fields);
+global $DB;
+$course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+echo enrol_get_plugin('weeklyhours')->add_instance($course, $fields);

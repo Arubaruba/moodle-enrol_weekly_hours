@@ -4,7 +4,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once('../../lib/formslib.php');
 
-class enrol_weekly_hours_edit_form extends moodleform {
+class enrol_weeklyhours_edit_form extends moodleform {
 
     protected function definition() {
 
@@ -13,7 +13,7 @@ class enrol_weekly_hours_edit_form extends moodleform {
         $form = $this->_form;
 
         // Approximate number of hours required to complete course
-        $form->addElement('text', 'hours_required', get_string('hours_required_label', 'enrol_weekly_hours'));
+        $form->addElement('text', 'hours_required', get_string('hours_required_label', 'enrol_weeklyhours'));
 
         // Hidden parameters
         $form->addElement('hidden', 'id');
@@ -31,7 +31,7 @@ class enrol_weekly_hours_edit_form extends moodleform {
         if (!$data['hours_required']) {
             $errors['hours_required'] = get_string('required');
         } else if (!is_numeric($data['hours_required'])) {
-            $errors['hours_required'] = get_string('must_be_number', 'enrol_weekly_hours');
+            $errors['hours_required'] = get_string('must_be_number', 'enrol_weeklyhours');
         }
 
         return $errors;

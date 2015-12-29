@@ -3,8 +3,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-  /* Add, edit or remove weekly_hours enrol instance from course */
-  'enrol/weekly_hours:config' => array(
+  /* Add, edit or remove weeklyhours enrol instance from course */
+  'enrol/weeklyhours:config' => array(
     'captype' => 'write',
     'contextlevel' => CONTEXT_COURSE,
     'archetypes' => array(
@@ -12,7 +12,7 @@ $capabilities = array(
     )
   ),
 
-  'enrol/weekly_hours:manage' => array(
+  'enrol/weeklyhours:manage' => array(
 
     'captype' => 'write',
     'contextlevel' => CONTEXT_COURSE,
@@ -23,7 +23,7 @@ $capabilities = array(
   ),
 
 //  /* Voluntarily unenrol self from course - watch out for data loss. */
-//  'enrol/weekly_hours:unenrolself' => array(
+//  'enrol/weeklyhours:unenrolself' => array(
 //    'captype' => 'write',
 //    'contextlevel' => CONTEXT_COURSE,
 //    'archetypes' => array(
@@ -32,7 +32,7 @@ $capabilities = array(
 //  ),
 
   /* Unenrol anybody from course (including self) -  watch out for data loss. */
-  'enrol/weekly_hours:unenrol' => array(
+  'enrol/weeklyhours:unenrol' => array(
     'captype' => 'write',
     'contextlevel' => CONTEXT_COURSE,
     'archetypes' => array(

@@ -15,22 +15,22 @@ $context = context_course::instance($course->id, MUST_EXIST);
 
 // Make sure user is authorized
 require_login($course);
-require_capability('enrol/weekly_hours:config', $context);
+require_capability('enrol/weeklyhours:config', $context);
 
 // Setup the page
-$PAGE->set_url('/enrol/weekly_hours/edit.php', array('courseid' => $course->id, 'id' => $instanceid));
+$PAGE->set_url('/enrol/weeklyhours/edit.php', array('courseid' => $course->id, 'id' => $instanceid));
 $PAGE->set_pagelayout('admin');
 
 // Set the return url and if the plugin is disabled (globally for moodle, not the course) go to this url immediately
 $return = new moodle_url('/enrol/instances.php', array('id' => $course->id));
-if (!enrol_is_enabled('weekly_hours')) redirect($return);
+if (!enrol_is_enabled('weeklyhours')) redirect($return);
 
-$plugin = enrol_get_plugin('weekly_hours');
+$plugin = enrol_get_plugin('weeklyhours');
 
 // Retrieve plugin instance data
 if ($instanceid) {
 // If this plugin was already added to the course (has an instance id) we simply get it's info from the database
-    $instance = $DB->get_record('enrol', array('courseid' => $course->id, 'enrol' => 'weekly_hours', 'id' => $instanceid), '*', MUST_EXIST);
+    $instance = $DB->get_record('enrol', array('courseid' => $course->id, 'enrol' => 'weeklyhours', 'id' => $instanceid), '*', MUST_EXIST);
 } else {
 // If not, we create a new instance
     require_capability('moodle/course:enrolconfig', $context);
@@ -44,7 +44,7 @@ if ($instanceid) {
 }
 
 // Deal with form submissions
-$form = new enrol_weekly_hours_edit_form(null, array($instance, $plugin, $context));
+$form = new enrol_weeklyhours_edit_form(null, array($instance, $plugin, $context));
 
 if ($form->is_cancelled()) {
     redirect($return);
@@ -65,9 +65,9 @@ if ($form->is_cancelled()) {
 }
 
 $PAGE->set_heading($course->fullname);
-$PAGE->set_title(get_string('pluginname', 'enrol_weekly_hours'));
+$PAGE->set_title(get_string('pluginname', 'enrol_weeklyhours'));
 
 echo $OUTPUT->header();
-echo $OUTPUT->heading(get_string('pluginname', 'enrol_weekly_hours'));
+echo $OUTPUT->heading(get_string('pluginname', 'enrol_weeklyhours'));
 $form->display();
 echo $OUTPUT->footer();
