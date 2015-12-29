@@ -20,7 +20,7 @@ class enrol_weeklyhours_plugin extends enrol_plugin {
                 'review_count' => 9,
                 'days_available' => array('Tues', 'Thurs'),
 
-                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php', array('teacher' => 1)),
+                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php'),
                 'reviews_url' => new moodle_url('/enrol/weeklyhours/view_teacher_reviews.php', array('teacher' => 1)),
             ),
             array(
@@ -30,7 +30,7 @@ class enrol_weeklyhours_plugin extends enrol_plugin {
                 'review_count' => 3,
                 'days_available' => array('Mon', 'Tues', 'Wedn', 'Thurs'),
 
-                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php', array('teacher' => 1)),
+                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php'),
                 'reviews_url' => new moodle_url('/enrol/weeklyhours/view_teacher_reviews.php', array('teacher' => 1)),
             )
         );
