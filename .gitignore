@@ -2,4 +2,5 @@
 .idea
 
 # Composer Packages
-/vendor
+vendor
+composer.lock
