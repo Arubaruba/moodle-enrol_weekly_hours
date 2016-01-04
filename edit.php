@@ -1,5 +1,10 @@
 <?php
 
+namespace enrol_weeklyhours;
+
+use context_course;
+use moodle_url;
+
 require('../../config.php');
 
 require_once('edit_form.php');

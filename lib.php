@@ -7,10 +7,12 @@ class enrol_weeklyhours_plugin extends enrol_plugin {
 
     /**
      * This is called when a course that the user is not enrolled yet is displayed
-     * @param stdClass $course
+     * @param stdClass $instance
      * @return string HTML displayed on course page
      */
-    public function enrol_page_hook(stdClass $course) {
+    public function enrol_page_hook(stdClass $instance) {
+        global $COURSE;
+
         // TODO get this data from the database
         $teachers = array(
             array(
@@ -20,25 +22,15 @@ class enrol_weeklyhours_plugin extends enrol_plugin {
                 'review_count' => 9,
                 'days_available' => array('Tues', 'Thurs'),
 
-                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php'),
-                'reviews_url' => new moodle_url('/enrol/weeklyhours/view_teacher_reviews.php', array('teacher' => 1)),
-            ),
-            array(
-                'id' => 2,
-                'name' => 'Teacher 2',
-                'percent_positive_reviews' => 70,
-                'review_count' => 3,
-                'days_available' => array('Mon', 'Tues', 'Wedn', 'Thurs'),
-
-                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php'),
-                'reviews_url' => new moodle_url('/enrol/weeklyhours/view_teacher_reviews.php', array('teacher' => 1)),
+                'reviews_url' => new moodle_url('/enrol/weeklyhours/view_teacher_reviews.php', array('teacherid' => 1)),
+                'schedule_url' => new moodle_url('/enrol/weeklyhours/schedule_lessons.php'), // Get params not supported because of form
             )
         );
 
         // Start reading output into an output buffer
         ob_start();
 
-        available_teachers_template($teachers);
+        enrol_weeklyhours\available_teachers_template($teachers, $instance->id, $COURSE->id);
 
         return ob_get_clean();
     }
